@@ -1,3 +1,4 @@
+import os
 import faiss
 import numpy as np
 import sqlite3
@@ -5,15 +6,23 @@ import json
 from sentence_transformers import SentenceTransformer
 import torch
 
+# Resolve the model path relative to this file so it works both locally and on Render
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_LOCAL_MODEL = os.path.join(_HERE, "data", "model_all_minilm_l6_v2")
+_MODEL_NAME = "all-MiniLM-L6-v2"
+
 class Retriever:
-    def __init__(self, index_path="ayurveda.index", db_path="ayurveda_ai.db", model_name="all-MiniLM-L6-v2"):
+    def __init__(self, index_path="data/ayurveda.index", db_path="data/ayurveda_ai.db", model_name=_MODEL_NAME):
         self.index = faiss.read_index(index_path)
         if hasattr(self.index, 'nprobe'):
-            self.index.nprobe = 20  # Optimization for recall
-        self.model = SentenceTransformer(model_name)
+            self.index.nprobe = 20
+        # Load from local path if available, otherwise download from HuggingFace
+        local_model = _LOCAL_MODEL if os.path.isdir(_LOCAL_MODEL) else model_name
+        self.model = SentenceTransformer(local_model)
         self.db_path = db_path
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model.to(self.device)
+
         
         # Persistent Connection
         self.conn = sqlite3.connect(db_path, check_same_thread=False)

@@ -27,9 +27,10 @@ def main():
     t0 = time.time()
 
     required = {
-        "SQLite DB (ayurveda_ai.db)":  "data/ayurveda_ai.db",
-        "FAISS Index (ayurveda.index)": "data/ayurveda.index",
-        "Prevalence JSON":             "data/disease_prevalence.json",
+        "SQLite DB (ayurveda_ai.db)":      "data/ayurveda_ai.db",
+        "FAISS Index (ayurveda.index)":    "data/ayurveda.index",
+        "Prevalence JSON":                 "data/disease_prevalence.json",
+        "SentenceTransformer model":       "data/model_all_minilm_l6_v2",
     }
 
     missing = []
