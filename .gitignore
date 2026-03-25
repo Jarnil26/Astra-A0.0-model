@@ -1,10 +1,9 @@
-# ── Large generated model files (built during Render build via build_astra.py) ─
-data/ayurveda_ai.db
-data/ayurveda.index
+# ── Embeddings folder (large numpy arrays) ────────────────────────────────────
 embeddings/
-*.db
-*.index
 *.npy
+
+# NOTE: data/ayurveda_ai.db (0.95MB) and data/ayurveda.index (0.65MB)
+# are committed to git — they are pre-built model artifacts needed by Render.
 
 # ── Python ─────────────────────────────────────────────────────────────────────
 __pycache__/

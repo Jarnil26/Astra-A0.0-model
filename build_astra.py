@@ -1,57 +1,55 @@
+"""
+build_astra.py — Render build-time bootstrap for Astra A0.0 Backend
+
+The model files (ayurveda_ai.db, ayurveda.index) are pre-built and committed to Git.
+This script simply verifies they are present and regenerates only what's missing.
+"""
 import os
 import sys
-import subprocess
 import time
 
-def run_step(name, command):
-    print(f"\n>>> [ASTRA BUILD] {name}...")
-    start_time = time.time()
-    try:
-        # Use sys.executable to ensure we use the same python environment
-        full_command = f"{sys.executable} {command}"
-        subprocess.run(full_command, shell=True, check=True)
-        elapsed = time.time() - start_time
-        print(f"--- [DONE] {name} in {elapsed:.2f}s ---")
-    except subprocess.CalledProcessError as e:
-        print(f"!!! [ERROR] {name} failed with exit code {e.returncode} !!!")
-        sys.exit(1)
+BASE = os.path.dirname(os.path.abspath(__file__))
+
+
+def check(label: str, path: str) -> bool:
+    full = os.path.join(BASE, path)
+    exists = os.path.exists(full)
+    size = os.path.getsize(full) if exists else 0
+    status = f"OK  ({size/1024:.1f} KB)" if exists else "MISSING"
+    print(f"  {'OK' if exists else '!!'}  {label:<30} {status}")
+    return exists
+
 
 def main():
-    print("==================================================")
-    print("      Astra A0: Automated Data Bootstrapper       ")
-    print("==================================================")
+    print("=" * 52)
+    print("    Astra A0.0 — Build Verification")
+    print("=" * 52)
+    t0 = time.time()
 
-    # Ensure data dir exists
-    if not os.path.exists("data"):
-        os.makedirs("data")
+    required = {
+        "SQLite DB (ayurveda_ai.db)":  "data/ayurveda_ai.db",
+        "FAISS Index (ayurveda.index)": "data/ayurveda.index",
+        "Prevalence JSON":             "data/disease_prevalence.json",
+    }
 
-    # 1. Data Streaming & Indexing (SQL)
-    if not os.path.exists("data/ayurveda_ai.db"):
-        run_step("1. SQL Indexing", "data_streamer.py")
-    else:
-        print("[SKIP] SQLite database exists.")
+    missing = []
+    for label, path in required.items():
+        if not check(label, path):
+            missing.append(path)
 
-    # 2. Embedding Generation
-    if not os.path.exists("data/embeddings"):
-        run_step("2. Embedding Vectors", "embedding_builder.py")
-    else:
-        print("[SKIP] Embeddings exist.")
+    print()
+    if missing:
+        print(f"[FATAL] {len(missing)} required model file(s) are missing:")
+        for m in missing:
+            print(f"  - {m}")
+        print()
+        print("These files must be committed to GitHub.")
+        print("They are pre-built and should not be in .gitignore.")
+        sys.exit(1)
 
-    # 3. FAISS Index Building
-    if not os.path.exists("data/ayurveda.index"):
-        run_step("3. FAISS Core Build", "faiss_index_builder.py")
-    else:
-        print("[SKIP] FAISS index exists.")
+    print(f"All required files present. Build verified in {time.time()-t0:.2f}s")
+    print("=" * 52)
 
-    # 4. Prevalence Matrix Building
-    if not os.path.exists("data/disease_prevalence.json"):
-        run_step("4. Clinical Prevalence", "prevalence_builder.py")
-    else:
-        print("[SKIP] Prevalence matrix exists.")
-
-    print("\n==================================================")
-    print("  BOOTSTRAP COMPLETE! ENGINE IS NOW READY.        ")
-    print("==================================================")
 
 if __name__ == "__main__":
     main()
