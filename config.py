@@ -3,6 +3,9 @@ config.py — centralised environment variable loading for Astra A0.0 Backend
 Set these on Render dashboard (or in .env for local dev).
 """
 import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load variables from .env if present
 
 # ── MongoDB ────────────────────────────────────────────────────────────────────
 # User accounts (register / login / reset password)

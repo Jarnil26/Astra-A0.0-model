@@ -53,6 +53,48 @@ from chat.routes import router as chat_router
 app.include_router(auth_router)
 app.include_router(chat_router)
 
+# ── Quick /diagnose endpoint (no auth — for testing / direct API use) ─────────
+from fastapi import HTTPException, Depends
+from pydantic import BaseModel
+from typing import List, Optional
+from auth.routes import get_current_user
+
+class DiagnoseRequest(BaseModel):
+    symptoms: List[str]
+    language: Optional[str] = "en"
+
+@app.post("/diagnose", tags=["Clinical"])
+def diagnose(req: DiagnoseRequest, user=Depends(get_current_user)):
+    """
+    One-shot diagnosis — requires login.
+    Send a list of English symptoms, get diseases + Ayurvedic remedies back.
+    """
+    global _engine_ready
+    if not _engine_ready:
+        raise HTTPException(status_code=503, detail="Clinical engine is not ready yet.")
+    symptoms = [s.strip().lower() for s in req.symptoms if s.strip()]
+    if not symptoms:
+        raise HTTPException(status_code=400, detail="No symptoms provided.")
+    try:
+        from clinical.engine import ClinicalEngine
+        engine = ClinicalEngine.instance()
+        result = engine.process_message(
+            message=", ".join(symptoms),
+            accumulated_symptoms=symptoms,
+            session_id="diagnose_tmp",
+        )
+        return {
+            "symptoms": symptoms,
+            "intent": result["intent"],
+            "language": result["language"],
+            "warnings": result["warnings"],
+            "prediction": result["prediction"],
+            "reply": result["reply"],
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # ── Engine startup ────────────────────────────────────────────────────────────
 _startup_error: str = ""
 _engine_ready: bool = False
