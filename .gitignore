@@ -1,0 +1,26 @@
+# ── Large generated model files (built during Render build via build_astra.py) ─
+data/ayurveda_ai.db
+data/ayurveda.index
+embeddings/
+*.db
+*.index
+*.npy
+
+# ── Python ─────────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+.env
+*.env
+
+# ── Local dev ──────────────────────────────────────────────────────────────────
+data/last_session.txt
+
+# ── OS ─────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs ───────────────────────────────────────────────────────────────────────
+*.log

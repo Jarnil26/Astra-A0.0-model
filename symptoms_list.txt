@@ -1,0 +1,241 @@
+Respiratory Symptoms:
+cough
+dry cough
+wet cough
+productive cough
+persistent cough
+night cough
+cough with mucus
+cough with blood
+cough with chest pain
+shortness of breath
+difficulty breathing
+rapid breathing
+wheezing
+chest tightness
+chest congestion
+blocked nose
+nasal congestion
+runny nose
+post nasal drip
+sneezing
+frequent sneezing
+itchy nose
+sinus pressure
+sinus pain
+pain and tenderness in face
+loss of smell
+loss of taste
+sore throat
+throat irritation
+hoarseness
+throat dryness
+difficulty swallowing
+pain while swallowing
+swollen tonsils
+thick yellow mucus
+green mucus
+bloody mucus
+
+Digestive Symptoms:
+nausea
+vomiting
+frequent vomiting
+bile vomiting
+diarrhea
+watery diarrhea
+bloody diarrhea
+constipation
+stomach cramps
+abdominal pain
+upper abdominal pain
+lower abdominal pain
+bloating
+gas
+indigestion
+heartburn
+acid reflux
+regurgitation of food
+loss of appetite
+increased appetite
+excessive thirst
+difficulty digesting food
+burning stomach sensation
+stomach heaviness
+abdominal swelling
+burping
+hiccups
+pain after eating
+pain before eating
+food intolerance
+fatty stool
+dark stool
+pale stool
+
+
+Neurological Symptoms:
+headache
+thumping headache
+migraine
+dizziness
+lightheadedness
+fainting
+blurred vision
+double vision
+sensitivity to light
+sensitivity to sound
+confusion
+memory loss
+difficulty concentrating
+loss of balance
+tremors
+muscle twitching
+numbness
+tingling sensation
+burning nerve pain
+slurred speech
+seizures
+sleepiness
+insomnia
+nightmares
+irritability
+mood swings
+anxiety
+panic attacks
+depression
+
+Musculoskeletal Symptoms:
+joint pain
+joint stiffness
+joint swelling
+muscle pain
+aching muscles
+muscle weakness
+muscle cramps
+muscle spasms
+back pain
+lower back pain
+upper back pain
+neck pain
+neck stiffness
+shoulder pain
+hip pain
+knee pain
+ankle pain
+wrist pain
+reduced range of motion
+difficulty walking
+difficulty standing
+difficulty lifting objects
+bone pain
+bone tenderness
+
+Skin Symptoms:
+rash
+itching
+severe itching
+redness
+skin swelling
+dry skin
+flaky skin
+peeling skin
+burning skin sensation
+blisters
+pus filled bumps
+acne
+eczema
+hives
+dark patches
+light patches
+skin discoloration
+yellow skin
+pale skin
+bruising easily
+slow wound healing
+cracked skin
+bleeding skin
+scaly skin
+
+
+Urinary Symptoms:
+frequent urination
+excessive urination
+pain when peeing
+burning urination
+smelly pee
+cloudy urine
+dark urine
+blood in urine
+difficulty urinating
+weak urine stream
+incomplete bladder emptying
+night time urination
+sudden urge to urinate
+urinary leakage
+pelvic pain during urination
+
+Cardiovascular Symptoms:
+chest pain
+chest discomfort
+chest tightness
+irregular heartbeat
+rapid heartbeat
+slow heartbeat
+heart palpitations
+shortness of breath on exertion
+swelling in legs
+swelling in ankles
+swelling in feet
+cold hands
+cold feet
+cyanosis
+fainting during activity
+
+
+Eye Symptoms:
+watery eyes
+dry eyes
+itchy eyes
+red eyes
+eye pain
+blurred vision
+double vision
+eye discharge
+light sensitivity
+difficulty seeing at night
+halo around lights
+eye swelling
+
+Ear Symptoms:
+ear pain
+ear pressure
+ringing in ears
+hearing loss
+ear discharge
+itchy ears
+blocked ears
+dizziness with ear pain
+balance problems
+
+General Symptoms:
+fever
+high fever
+low grade fever
+mild fever
+slight fever
+chills
+sweating
+night sweats
+fatigue
+extreme fatigue
+weakness
+body aches
+weight loss
+weight gain
+loss of appetite
+dehydration
+excessive thirst
+difficulty sleeping
+daytime sleepiness
+cold intolerance
+heat intolerance

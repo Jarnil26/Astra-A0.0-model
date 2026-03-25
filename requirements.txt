@@ -1,0 +1,24 @@
+# Core API
+fastapi
+uvicorn[standard]
+pydantic[email]
+python-multipart
+
+# Auth
+passlib[bcrypt]
+python-jose[cryptography]
+
+# Clinical engine
+numpy
+faiss-cpu
+sentence-transformers
+
+# Filter layer NLP
+langdetect
+rapidfuzz
+
+# MongoDB
+pymongo
+
+# Utilities
+requests

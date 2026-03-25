@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: astra-a0-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt && python build_astra.py
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: USER_MONGO_URI
+        sync: false
+      - key: CHAT_MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: SMTP_HOST
+        value: smtp.zoho.in
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        value: connect@byteastra.in
+      - key: SMTP_PASS
+        sync: false
+      - key: APP_URL
+        sync: false
